@@ -1,6 +1,7 @@
 package com.betrybe.agrix.solution;
 
 import com.betrybe.agrix.ebytr.staff.entity.Person;
+import com.betrybe.agrix.ebytr.staff.exception.PersonAlreadyExistsException;
 import com.betrybe.agrix.ebytr.staff.repository.PersonRepository;
 import com.betrybe.agrix.ebytr.staff.security.Role;
 import com.betrybe.agrix.ebytr.staff.service.PersonService;
@@ -70,7 +71,7 @@ public class PersonServiceTest {
 
   @Test
   @DisplayName("Testa a criação de uma pessoa")
-  public void testCreatePerson() {
+  public void testCreatePerson() throws PersonAlreadyExistsException {
     Person person = new Person();
     person.setId(100L);
     person.setUsername("Isabel");

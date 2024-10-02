@@ -5,6 +5,7 @@ import com.betrybe.agrix.controller.exception.CropNotFoundException;
 import com.betrybe.agrix.controller.exception.FarmBadRequestException;
 import com.betrybe.agrix.controller.exception.FarmNotFoundException;
 import com.betrybe.agrix.controller.exception.FertilizerNotFoundException;
+import com.betrybe.agrix.ebytr.staff.exception.PersonAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -39,5 +40,11 @@ public class GlobalControllerAdvice {
   public ResponseEntity<String> handleFertilizerNotFoundException(
           FertilizerNotFoundException exception) {
     return ResponseEntity.status((HttpStatus.NOT_FOUND)).body(exception.getMessage());
+  }
+
+  @ExceptionHandler(PersonAlreadyExistsException.class)
+  public ResponseEntity<String> handlePersonAlreadyExistsException(
+          PersonAlreadyExistsException exception) {
+    return ResponseEntity.status((HttpStatus.CONFLICT)).body(exception.getMessage());
   }
 }
