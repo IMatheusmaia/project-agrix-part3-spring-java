@@ -39,4 +39,8 @@ public class TokenService {
         .withExpiresAt(getExpiration())
         .sign(algorithm);
   }
+
+  public String validateToken(String token) {
+    return JWT.require(algorithm).build().verify(token).getSubject();
+  }
 }
